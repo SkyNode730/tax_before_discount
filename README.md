@@ -4,4 +4,4 @@ this is pre discount tax calculation
 
 #### License
 
-mit
+mit# tax_before_discount
