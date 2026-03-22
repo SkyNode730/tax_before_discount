@@ -8,6 +8,12 @@ app_license = "mit"
 doc_events = {
     "Sales Invoice": {
         "validate": "tax_before_discount.tax_before_discount.overrides.sales_invoice.calculate_tax_before_discount"
+    },
+    "Purchase Invoice": {
+        "validate": "tax_before_discount.tax_before_discount.overrides.purchase_invoice.calculate_tax_before_discount"
+    },
+    "Delivery Note": {
+        "validate": "tax_before_discount.tax_before_discount.overrides.delivery_note.calculate_tax_before_discount"
     }
 }
 
