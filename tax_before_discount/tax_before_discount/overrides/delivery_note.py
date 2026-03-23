@@ -34,6 +34,7 @@ def calculate_tax_before_discount(doc, method):
 
     _recalculate_taxes(doc, pre_discount_total)
     _recalculate_totals(doc)
+    _set_order_booker(doc)
 
     frappe.msgprint(
         _("Taxes calculated on pre-discount amount: {0}").format(
@@ -241,3 +242,18 @@ def _recalculate_totals(doc):
     doc.base_rounded_total       = rounded
     doc.rounding_adjustment      = rounding_adj
     doc.base_rounding_adjustment = rounding_adj
+
+def _set_order_booker(doc):
+    if not doc.customer:
+        return
+
+    sales_person = frappe.db.get_value(
+        "Sales Team",
+        {
+            "parent": doc.customer,
+            "parenttype": "Customer"
+        },
+        "sales_person"
+    )
+    if not doc.order_booker:
+        doc.order_booker = sales_person or ""
