@@ -1,3 +1,8 @@
+from erpnext.selling.doctype import sales_order
+from typing_extensions import override
+from tax_before_discount import tax_before_discount
+
+
 app_name = "tax_before_discount"
 app_title = "Tax Before Discount"
 app_publisher = "Safdar Ali"
@@ -11,7 +16,8 @@ doc_events = {
         "validate": "tax_before_discount.tax_before_discount.overrides.sales_invoice.calculate_tax_before_discount"
     },
     "Sales Order": {
-        "on_update": "tax_before_discount.tax_before_discount.overrides.sales_order.calculate_tax_before_discount"
+        "validate": "tax_before_discount.tax_before_discount.overrides.sales_order.calculate_tax_before_discount",
+        "on_update":"tax_before_discount.tax_before_discount.override.sales_order.custom_on_update"
     },
     "Delivery Note": {
         "validate": "tax_before_discount.tax_before_discount.overrides.delivery_note.calculate_tax_before_discount"

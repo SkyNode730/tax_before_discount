@@ -5,6 +5,12 @@ from frappe.utils import flt
 from erpnext.controllers.accounts_controller import get_taxes_and_charges
 from erpnext.controllers.taxes_and_totals import calculate_taxes_and_totals
 
+def custom_on_update(doc,method):
+    settings = frappe.get_single("Tax Before Discount Settings")
+    if not settings.enabled:
+        return
+    _set_order_booker(doc)
+    _set_tax_template(doc)
 
 def calculate_tax_before_discount(doc, method):
     """
@@ -34,8 +40,6 @@ def calculate_tax_before_discount(doc, method):
     if not post_discount_total:
         return
 
-    _set_order_booker(doc)
-    _set_tax_template(doc)
     _recalculate_taxes(doc, pre_discount_total)
     _recalculate_totals(doc)
 
@@ -263,8 +267,8 @@ def _recalculate_totals(doc):
     doc.base_rounded_total       = rounded
     doc.rounding_adjustment      = rounding_adj
     doc.base_rounding_adjustment = rounding_adj
-
-def _set_order_booker(doc):
+    
+def _set_order_booker(doc, method=None):
     if not doc.customer:
         return
 
@@ -286,9 +290,11 @@ def _set_order_booker(doc):
     for row in sales_team_rows:
         if not row.sales_person:
             continue
+
         allocated_amount = (
             (doc.grand_total or 0) * (row.allocated_percentage or 0) / 100
         )
+
         doc.append("sales_team", {
             "sales_person":         row.sales_person,
             "allocated_percentage": row.allocated_percentage or 0,
