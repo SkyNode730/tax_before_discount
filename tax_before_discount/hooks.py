@@ -17,7 +17,7 @@ doc_events = {
     },
     "Sales Order": {
         "validate": "tax_before_discount.tax_before_discount.overrides.sales_order.calculate_tax_before_discount",
-        "on_update":"tax_before_discount.tax_before_discount.override.sales_order.custom_on_update"
+        "on_update":"tax_before_discount.tax_before_discount.overrides.sales_order.custom_on_update"
     },
     "Delivery Note": {
         "validate": "tax_before_discount.tax_before_discount.overrides.delivery_note.calculate_tax_before_discount"
