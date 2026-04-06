@@ -34,6 +34,7 @@ def calculate_tax_before_discount(doc, method):
 
     _recalculate_taxes(doc, pre_discount_total)
     _recalculate_totals(doc)
+    _calculate_basic_amounts(doc)
 
     frappe.msgprint(
         _("Taxes calculated on pre-discount amount: {0}").format(
@@ -261,3 +262,24 @@ def _recalculate_totals(doc):
         doc.outstanding_amount = rounded
     else:
         doc.outstanding_amount = grand_total
+
+def _calculate_basic_amounts(doc):
+    """
+    Triggered on validate of Sales Invoice.
+ 
+    For each row in `items`:
+        basic_amount = price_list_rate * qty
+ 
+    Then sums all row basic_amount values and sets
+        total_basic_amount  on the parent document.
+    """
+    total_basic_amount = 0.0
+ 
+    for row in doc.items:
+        price_list_rate = row.price_list_rate or 0.0
+        qty = row.qty or 0.0
+ 
+        row.basic_amount = price_list_rate * qty
+        total_basic_amount += row.basic_amount
+ 
+    doc.total_basic_amount = total_basic_amount

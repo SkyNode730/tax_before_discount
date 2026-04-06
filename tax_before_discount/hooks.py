@@ -29,8 +29,8 @@ fixtures = [
     {
         "dt": "Custom Field",
         "filters": [
-            ["dt", "in", ["Sales Order Item", "Delivery Note Item", "Pricing Rule", "Customer"]],
-            ["fieldname", "in", ["discount_account", "taxes_and_charges"]]
+            ["dt", "in", ["Sales Order","Sales Order Item","Delivery Note","Delivery Note Item","Sales Invoice","Sales Invoice Item", "Pricing Rule", "Customer"]],
+            ["fieldname", "in", ["discount_account", "taxes_and_charges","basic_amount","total_basic_amount"]]
         ]
     }
 ]
@@ -72,7 +72,11 @@ fixtures = [
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Sales Invoice" : "public/js/sales_invoice.js",
+    "Sales Order" : "public/js/sales_order.js",
+    "Delivery Note" : "public/js/delivery_node.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
