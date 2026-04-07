@@ -38,7 +38,9 @@ def calculate_tax_before_discount(doc, method):
     _set_tax_template(doc)
     _recalculate_taxes(doc, pre_discount_total)
     _recalculate_totals(doc)
-    _calculate_basic_amounts(doc)
+    
+    if settings.enable_basic_amount:
+        _calculate_basic_amounts(doc)
 
     frappe.msgprint(
         _("Taxes calculated on pre-discount amount: {0}").format(
