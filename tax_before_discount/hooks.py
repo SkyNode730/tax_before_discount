@@ -30,7 +30,7 @@ fixtures = [
         "dt": "Custom Field",
         "filters": [
             ["dt", "in", ["Sales Order","Sales Order Item","Delivery Note","Delivery Note Item","Sales Invoice","Sales Invoice Item", "Pricing Rule", "Customer"]],
-            ["fieldname", "in", ["discount_account", "taxes_and_charges","basic_amount","total_basic_amount"]]
+            ["fieldname", "in", ["discount_account", "taxes_and_charges","basic_amount","total_basic_amount","total_discount_amount","custom_column_break_20250416151354","enable_tax_before_discount"]]
         ]
     }
 ]

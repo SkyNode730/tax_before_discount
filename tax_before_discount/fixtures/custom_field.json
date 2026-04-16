@@ -127,6 +127,98 @@
     "in_list_view": 0,
     "print_hide": 1,
     "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-total_discount_amount",
+    "dt": "Sales Invoice",
+    "fieldname": "total_discount_amount",
+    "fieldtype": "Currency",
+    "label": "Total Discount Amount",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Order-total_discount_amount",
+    "dt": "Sales Order",
+    "fieldname": "total_discount_amount",
+    "fieldtype": "Currency",
+    "label": "Total Discount Amount",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Delivery Note-total_discount_amount",
+    "dt": "Delivery Note",
+    "fieldname": "total_discount_amount",
+    "fieldtype": "Currency",
+    "label": "Total Discount Amount",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-custom_column_break_20250416151354",
+    "dt": "Sales Invoice",
+    "fieldname": "custom_column_break_20250416151354",
+    "fieldtype": "Column Break",
+    "label": "",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Order-custom_column_break_2025041615135",
+    "dt": "Sales Order",
+    "fieldname": "custom_column_break_20250416151355",
+    "fieldtype": "Column Break",
+    "label": "",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Delivery Note-custom_column_break_20250416151356",
+    "dt": "Delivery Note",
+    "fieldname": "custom_column_break_20250416151356",
+    "fieldtype": "Column Break",
+    "label": "",
+    "insert_after": "total_basic_amount",
+    "read_only": 1,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-enable_tax_before_discount",
+    "dt": "Customer",
+    "fieldname": "enable_tax_before_discount",
+    "fieldtype": "Check",
+    "label": "Enable Tax Before Discount",
+    "insert_after": "dn_required",
+    "read_only": 0,
+    "in_list_view": 0,
+    "print_hide": 1,
+    "default": 0
   }
+
 
 ]

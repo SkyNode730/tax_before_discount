@@ -17,7 +17,7 @@ def calculate_tax_before_discount(doc, method):
     if settings.enable_basic_amount:
         _calculate_basic_amounts(doc)
 
-    if not settings.enabled:
+    if not is_enabled_tax_before_discount(doc):
         return
 
     if not settings.apply_to_all_companies:
@@ -266,6 +266,7 @@ def _recalculate_totals(doc):
         doc.outstanding_amount = rounded
     else:
         doc.outstanding_amount = grand_total
+        
 
 def _calculate_basic_amounts(doc):
     """
@@ -278,6 +279,7 @@ def _calculate_basic_amounts(doc):
         total_basic_amount  on the parent document.
     """
     total_basic_amount = 0.0
+    total_discount_amount = 0.0
  
     for row in doc.items:
         price_list_rate = row.price_list_rate or 0.0
@@ -285,5 +287,11 @@ def _calculate_basic_amounts(doc):
  
         row.basic_amount = price_list_rate * qty
         total_basic_amount += row.basic_amount
+        total_discount_amount += row.discount_amount
  
     doc.total_basic_amount = total_basic_amount
+    doc.total_discount_amount = total_discount_amount
+
+def is_enabled_tax_before_discount(doc):
+    customer = frappe.get_doc("Customer", doc.customer)
+    return customer.enable_tax_before_discount
