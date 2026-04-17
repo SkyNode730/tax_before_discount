@@ -307,3 +307,7 @@ def _calculate_basic_amounts(doc):
  
     doc.total_basic_amount = total_basic_amount
     doc.total_discount_amount = total_discount_amount
+
+def is_enabled_tax_before_discount(doc):
+    customer = frappe.get_doc("Customer", doc.customer)
+    return customer.enable_tax_before_discount
