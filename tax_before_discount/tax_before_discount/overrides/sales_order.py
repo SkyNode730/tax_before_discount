@@ -7,6 +7,10 @@ from erpnext.controllers.taxes_and_totals import calculate_taxes_and_totals
 
 def custom_on_update(doc,method):
     settings = frappe.get_single("Tax Before Discount Settings")
+
+    if settings.enable_basic_amount:
+        _calculate_basic_amounts(doc)
+        
     if not is_enabled_tax_before_discount(doc):
         return
     _set_order_booker(doc)
@@ -22,8 +26,6 @@ def calculate_tax_before_discount(doc, method):
 
     settings = frappe.get_single("Tax Before Discount Settings")
 
-    if settings.enable_basic_amount:
-        _calculate_basic_amounts(doc)
 
     if not is_enabled_tax_before_discount(doc):
         return
